@@ -1,6 +1,6 @@
 ---
  - name: Third Party Software Installation
-   hosts: infinet-cluster # Infinet Inventory
+   hosts: infinetcluster # Infinet Inventory
    become: true
    tasks:
     - name: Ansible apt install Package
