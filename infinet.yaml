@@ -1,9 +1,8 @@
----
- - name: Third Party Software Installation
-   hosts: infinetcluster # Infinet Inventory
-   become: true
-   tasks:
-    - name: Ansible apt install Package
+- hosts: all
+  tasks:
+    - name: Ensure htop is marked as manual
       apt:
         name: htop
         state: present
+      become: yes
+      become_method: sudo
