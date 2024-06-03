@@ -1,0 +1,31 @@
+---
+- name: Gather details of Ubuntu hosts
+  hosts: all
+  become: yes
+  tasks:
+    - name: Gather network interfaces
+      ansible.builtin.command:
+        cmd: ip -o addr show
+      register: interfaces_output
+
+    - name: Gather kernel version
+      ansible.builtin.command:
+        cmd: uname -r
+      register: kernel_version_output
+
+    - name: Gather uptime
+      ansible.builtin.command:
+        cmd: uptime
+      register: uptime_output
+
+    - name: Print network interfaces
+      ansible.builtin.debug:
+        msg: "{{ interfaces_output.stdout }}"
+
+    - name: Print kernel version
+      ansible.builtin.debug:
+        msg: "{{ kernel_version_output.stdout }}"
+
+    - name: Print uptime
+      ansible.builtin.debug:
+        msg: "{{ uptime_output.stdout }}"
