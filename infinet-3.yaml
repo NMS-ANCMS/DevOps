@@ -1,0 +1,11 @@
+---
+- name: Update APT package index on servers
+  hosts: all
+  become: yes
+  become_method: sudo
+  remote_user: infinet
+
+  tasks:
+    - name: Update the apt package index
+      apt:
+        update_cache: yes
