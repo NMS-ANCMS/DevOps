@@ -3,13 +3,8 @@
   hosts: all
   become: yes
   tasks:
-    - name: Ensure df command is available
-      apt:
-        name: coreutils
-        state: present
-
     - name: Check disk usage
-      command: df -h
+      raw: df -h
       register: disk_usage
 
     - name: Display disk usage
