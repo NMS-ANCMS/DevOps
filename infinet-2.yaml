@@ -4,6 +4,14 @@
   become: yes
   become_method: sudo
   tasks:
+    - name: Check if we are root
+      command: whoami
+      register: whoami_output
+
+    - name: Display whoami output
+      debug:
+        msg: "We are running as {{ whoami_output.stdout }}"
+
     - name: Ensure df command is available
       apt:
         name: coreutils
