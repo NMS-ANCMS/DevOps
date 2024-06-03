@@ -2,9 +2,16 @@
 - name: Check disk usage on all hosts
   hosts: all
   become: yes
+  become_method: sudo
   tasks:
+    - name: Ensure df command is available
+      apt:
+        name: coreutils
+        state: present
+        update_cache: yes
+
     - name: Check disk usage
-      raw: df -h
+      command: df -h
       register: disk_usage
 
     - name: Display disk usage
