@@ -3,7 +3,7 @@
   hosts: all
   become: yes
   become_method: sudo
-  remote_user: infinet
+  remote_user: sysadmin
 
   tasks:
     - name: Update the apt package index
